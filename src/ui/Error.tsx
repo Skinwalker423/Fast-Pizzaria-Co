@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 function NotFound() {
   const navigate = useNavigate();
@@ -7,7 +7,9 @@ function NotFound() {
     <div>
       <h1>Something went wrong 😢</h1>
       <p>%MESSAGE%</p>
-      <button onClick={() => navigate(-1)}>&larr; Go back</button>
+      <button onClick={() => navigate(-1)}>
+        &larr; Go back
+      </button>
     </div>
   );
 }
