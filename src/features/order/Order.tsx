@@ -39,6 +39,7 @@ const order = {
   position: "-9.000,38.000",
   orderPrice: 95,
   priorityPrice: 19,
+  status: "fulfilled",
 };
 
 function Order() {

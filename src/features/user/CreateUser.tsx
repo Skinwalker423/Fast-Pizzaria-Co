@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 
 function CreateUser() {
   const [username, setUsername] = useState("");
 
-  function handleSubmit(e) {
+  function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
   }
 
