@@ -6,19 +6,29 @@ import {
 } from "react-router-dom";
 
 import "./index.css";
-import App from "./App.tsx";
 import Home from "./ui/Home.tsx";
 import NotFound from "./ui/Error.tsx";
+import Menu from "./features/menu/Menu.tsx";
+import Order from "./features/order/Order.tsx";
+import CreateOrder from "./features/order/CreateOrder.tsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <Home />,
     errorElement: <NotFound />,
     children: [
       {
-        path: "home",
-        element: <Home />,
+        path: "menu",
+        element: <Menu />,
+      },
+      {
+        path: "order/new",
+        element: <CreateOrder />,
+      },
+      {
+        path: "order/:orderId",
+        element: <Order />,
       },
     ],
   },

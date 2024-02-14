@@ -1,3 +1,5 @@
+import { Outlet } from "react-router-dom";
+
 function Home() {
   return (
     <div>
@@ -6,6 +8,7 @@ function Home() {
         <br />
         Straight out of the oven, straight to you.
       </h1>
+      <Outlet />
     </div>
   );
 }
