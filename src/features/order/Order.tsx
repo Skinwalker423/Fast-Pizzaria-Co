@@ -1,5 +1,6 @@
 // Test ID: IIDSAT
 
+import { useParams } from "react-router-dom";
 import {
   calcMinutesLeft,
   formatCurrency,
@@ -43,6 +44,8 @@ const order = {
 };
 
 function Order() {
+  const params = useParams();
+  console.log("params", params);
   // Everyone can search for all orders, so for privacy reasons we're gonna gonna exclude names or address, these are only for the restaurant staff
   const {
     id,

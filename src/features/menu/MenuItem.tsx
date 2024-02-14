@@ -10,6 +10,8 @@ function MenuItem({ pizza }) {
     imageUrl,
   } = pizza;
 
+  console.log(id);
+
   return (
     <li>
       <img src={imageUrl} alt={name} />
