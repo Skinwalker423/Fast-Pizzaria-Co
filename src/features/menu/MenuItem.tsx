@@ -1,6 +1,11 @@
+import { MenuItem as Item } from "../../types";
 import { formatCurrency } from "../../utils/helpers";
 
-function MenuItem({ pizza }) {
+interface MenuItemProps {
+  pizza: Item;
+}
+
+function MenuItem({ pizza }: MenuItemProps) {
   const {
     id,
     name,

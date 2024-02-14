@@ -8,7 +8,9 @@ import {
 import "./index.css";
 import Home from "./ui/Home.tsx";
 import NotFound from "./ui/Error.tsx";
-import Menu from "./features/menu/Menu.tsx";
+import Menu, {
+  loader as menuLoader,
+} from "./features/menu/Menu.tsx";
 import Order from "./features/order/Order.tsx";
 import CreateOrder from "./features/order/CreateOrder.tsx";
 import Cart from "./features/cart/Cart.tsx";
@@ -26,6 +28,7 @@ const router = createBrowserRouter([
       {
         path: "menu",
         element: <Menu />,
+        loader: menuLoader,
       },
       {
         path: "order/new",
