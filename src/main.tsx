@@ -12,28 +12,34 @@ import Menu from "./features/menu/Menu.tsx";
 import Order from "./features/order/Order.tsx";
 import CreateOrder from "./features/order/CreateOrder.tsx";
 import Cart from "./features/cart/Cart.tsx";
+import AppLayout from "./ui/AppLayout.tsx";
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <Home />,
-    errorElement: <NotFound />,
-  },
-  {
-    path: "menu",
-    element: <Menu />,
-  },
-  {
-    path: "order/new",
-    element: <CreateOrder />,
-  },
-  {
-    path: "order/:orderId",
-    element: <Order />,
-  },
-  {
-    path: "cart",
-    element: <Cart />,
+    element: <AppLayout />,
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+        errorElement: <NotFound />,
+      },
+      {
+        path: "menu",
+        element: <Menu />,
+      },
+      {
+        path: "order/new",
+        element: <CreateOrder />,
+      },
+      {
+        path: "order/:orderId",
+        element: <Order />,
+      },
+      {
+        path: "cart",
+        element: <Cart />,
+      },
+    ],
   },
 ]);
 

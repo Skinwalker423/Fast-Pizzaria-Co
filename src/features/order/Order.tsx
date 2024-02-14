@@ -44,8 +44,8 @@ const order = {
 };
 
 function Order() {
-  const params = useParams();
-  console.log("params", params);
+  const { orderId } = useParams();
+  console.log("params", orderId);
   // Everyone can search for all orders, so for privacy reasons we're gonna gonna exclude names or address, these are only for the restaurant staff
   const {
     id,
