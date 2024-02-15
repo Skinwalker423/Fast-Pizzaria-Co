@@ -8,9 +8,8 @@ import {
 import "./index.css";
 import Home from "./ui/Home.tsx";
 import NotFound from "./ui/Error.tsx";
-import Menu, {
-  loader as menuLoader,
-} from "./features/menu/Menu.tsx";
+import Menu from "./features/menu/Menu.tsx";
+import { loader as menuLoader } from "./features/menu/loader.ts";
 import Order from "./features/order/Order.tsx";
 import CreateOrder from "./features/order/CreateOrder.tsx";
 import Cart from "./features/cart/Cart.tsx";
@@ -19,11 +18,11 @@ import AppLayout from "./ui/AppLayout.tsx";
 const router = createBrowserRouter([
   {
     element: <AppLayout />,
+    errorElement: <NotFound />,
     children: [
       {
         path: "/",
         element: <Home />,
-        errorElement: <NotFound />,
       },
       {
         path: "menu",
