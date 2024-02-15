@@ -10,6 +10,7 @@ import Home from "./ui/Home.tsx";
 import NotFound from "./ui/Error.tsx";
 import Menu from "./features/menu/Menu.tsx";
 import { loader as menuLoader } from "./features/menu/loader.ts";
+import { loader as orderLoader } from "./features/order/loader.ts";
 import Order from "./features/order/Order.tsx";
 import CreateOrder from "./features/order/CreateOrder.tsx";
 import Cart from "./features/cart/Cart.tsx";
@@ -37,6 +38,8 @@ const router = createBrowserRouter([
       {
         path: "order/:orderId",
         element: <Order />,
+        loader: orderLoader,
+        errorElement: <NotFound />,
       },
       {
         path: "cart",

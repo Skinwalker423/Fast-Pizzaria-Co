@@ -1,9 +1,19 @@
-export type Order = {
-  pizzaId: string;
-  name: string;
-  quantity: number;
-  unitPrice: number;
-  totalPrice: number;
+export type OrderItem = {
+  id: string;
+  status: string;
+  priority: string;
+  priorityPrice: number;
+  orderPrice: number;
+  estimatedDelivery: Date;
+  cart: [
+    {
+      pizzaId: string;
+      name: string;
+      quantity: number;
+      unitPrice: number;
+      totalPrice: number;
+    }
+  ];
 };
 
 export type UpdateOrder = {

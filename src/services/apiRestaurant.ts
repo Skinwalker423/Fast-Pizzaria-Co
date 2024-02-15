@@ -1,4 +1,4 @@
-import { MenuData, Order, UpdateOrder } from "../types";
+import { MenuData, OrderItem, UpdateOrder } from "../types";
 
 const API_URL =
   "https://react-fast-pizza-api.onrender.com/api";
@@ -21,7 +21,7 @@ export async function getOrder(id: string) {
   return data;
 }
 
-export async function createOrder(newOrder: Order) {
+export async function createOrder(newOrder: OrderItem) {
   try {
     const res = await fetch(`${API_URL}/order`, {
       method: "POST",
