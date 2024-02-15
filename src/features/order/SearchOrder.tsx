@@ -1,7 +1,15 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const SearchOrder = () => {
   const [value, setValue] = useState("");
+  const navigate = useNavigate();
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    navigate(`/order/${value}`);
+    setValue("");
+  };
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement>
@@ -10,7 +18,7 @@ const SearchOrder = () => {
   };
 
   return (
-    <form onSubmit={(e) => e.preventDefault()}>
+    <form onSubmit={handleSubmit}>
       <input
         type='search'
         placeholder='Search order number'
