@@ -28,6 +28,7 @@ const router = createBrowserRouter([
         path: "menu",
         element: <Menu />,
         loader: menuLoader,
+        errorElement: <NotFound />,
       },
       {
         path: "order/new",
