@@ -15,6 +15,7 @@ import Order from "./features/order/Order.tsx";
 import CreateOrder from "./features/order/CreateOrder.tsx";
 import Cart from "./features/cart/Cart.tsx";
 import AppLayout from "./ui/AppLayout.tsx";
+import { action as createOrderAction } from "./features/order/action.ts";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,7 @@ const router = createBrowserRouter([
       {
         path: "order/new",
         element: <CreateOrder />,
+        action: createOrderAction,
       },
       {
         path: "order/:orderId",
