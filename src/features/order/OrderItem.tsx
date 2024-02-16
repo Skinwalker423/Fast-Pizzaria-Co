@@ -6,6 +6,7 @@ function OrderItem({
   ingredients,
 }) {
   const { quantity, name, totalPrice } = item;
+  console.log(isLoadingIngredients, ingredients);
 
   return (
     <li>
