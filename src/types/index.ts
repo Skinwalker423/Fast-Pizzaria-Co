@@ -1,19 +1,25 @@
 export type OrderItem = {
   id: string;
   status: string;
-  priority: string;
+  priority: boolean;
   priorityPrice: number;
   orderPrice: number;
   estimatedDelivery: Date;
-  cart: [
-    {
-      pizzaId: string;
-      name: string;
-      quantity: number;
-      unitPrice: number;
-      totalPrice: number;
-    }
-  ];
+  cart: [];
+};
+
+export type ConfirmedOrder = {
+  address: string;
+  cart: [];
+  createdAt: Date;
+  customer: string;
+  estimatedDelivery: string;
+  id: string;
+  orderPrice: 60;
+  phone: string;
+  priority: true;
+  priorityPrice: number;
+  status: string;
 };
 
 export type UpdateOrder = {

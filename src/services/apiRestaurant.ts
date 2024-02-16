@@ -1,4 +1,9 @@
-import { MenuData, OrderItem, UpdateOrder } from "../types";
+import {
+  ConfirmedOrder,
+  MenuData,
+  OrderItem,
+  UpdateOrder,
+} from "../types";
 
 const API_URL =
   "https://react-fast-pizza-api.onrender.com/api";
@@ -32,7 +37,9 @@ export async function createOrder(newOrder: OrderItem) {
     });
 
     if (!res.ok) throw Error();
-    const { data } = await res.json();
+    const { data }: { data: ConfirmedOrder } =
+      await res.json();
+    console.log("data in create order", data);
     return data;
   } catch {
     throw Error("Failed creating your order");
