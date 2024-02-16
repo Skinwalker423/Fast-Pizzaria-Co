@@ -2,6 +2,11 @@ import { redirect } from "react-router-dom";
 import { createOrder } from "../../services/apiRestaurant";
 import { OrderItem } from "../../types";
 
+const isValidPhone = (str) =>
+  /^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/.test(
+    str
+  );
+
 export async function action({ request }) {
   const formData = await request.formData();
   const data = Object.fromEntries(formData) as {
@@ -12,6 +17,7 @@ export async function action({ request }) {
     orderPrice: number;
     estimatedDelivery: Date;
     cart: string;
+    phone: string;
   };
 
   const order: OrderItem = {
@@ -20,7 +26,19 @@ export async function action({ request }) {
     priority: data["priority"] === "on",
   };
 
-  console.log(order);
+  const errors = {} as any;
+  console.log("order", order);
+
+  // phone validation
+  if (!isValidPhone(order.phone)) {
+    errors.phone = "Need phone number";
+  }
+
+  if (Object.keys(errors).length > 0) {
+    return errors;
+  }
+
+  // if no errors create order
   const newOrder = await createOrder(order);
 
   return redirect(`/order/${newOrder.id}`);

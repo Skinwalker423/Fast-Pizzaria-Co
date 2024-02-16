@@ -5,6 +5,7 @@ export type OrderItem = {
   priorityPrice: number;
   orderPrice: number;
   estimatedDelivery: Date;
+  phone: string;
   cart: [];
 };
 
