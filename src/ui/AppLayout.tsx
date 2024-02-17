@@ -8,13 +8,13 @@ const AppLayout = () => {
   const isLoading = navigation.state === "loading";
 
   return (
-    <div className='layout'>
+    <div className="layout">
       {isLoading && <Loader />}
       <Header />
       <main>
         <Outlet />
+        <CartOverview />
       </main>
-      <CartOverview />
     </div>
   );
 };
