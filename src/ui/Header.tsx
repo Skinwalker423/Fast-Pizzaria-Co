@@ -4,7 +4,7 @@ import Username from "../features/user/Username";
 
 const Header = () => {
   return (
-    <header className="border-b-2 border-b-stone-500 bg-yellow-500 px-4 py-4 uppercase">
+    <header className="border-b-2 border-stone-200 bg-yellow-500 px-4 py-4 uppercase">
       <Link className="tracking-widest" to={"/"}>
         Fast React Pizza Co
       </Link>
