@@ -1,10 +1,6 @@
 // https://uibakery.io/regex-library/phone-number
 
-import {
-  Form,
-  useActionData,
-  useNavigation,
-} from "react-router-dom";
+import { Form, useActionData, useNavigation } from "react-router-dom";
 
 const fakeCart = [
   {
@@ -40,25 +36,25 @@ function CreateOrder() {
   const isSubmitting = navigation.state === "submitting";
 
   return (
-    <div>
+    <div className="my-10">
       <h2>Ready to order? Let&apos;s go!</h2>
 
-      <Form method='POST'>
+      <Form method="POST">
         <div>
           <label>First Name</label>
-          <input type='text' name='customer' required />
+          <div>
+            <input type="text" name="customer" required />
+          </div>
         </div>
 
         <div>
           <label>Phone number</label>
           <div>
-            <input type='tel' name='phone' required />
+            <input type="tel" name="phone" required />
           </div>
           {formErrors?.phone && (
             <span>
-              <h5 style={{ color: "red" }}>
-                {formErrors.phone}
-              </h5>
+              <h5 style={{ color: "red" }}>{formErrors.phone}</h5>
             </span>
           )}
         </div>
@@ -66,33 +62,25 @@ function CreateOrder() {
         <div>
           <label>Address</label>
           <div>
-            <input type='text' name='address' required />
+            <input type="text" name="address" required />
           </div>
         </div>
 
         <div>
           <input
-            type='checkbox'
-            name='priority'
-            id='priority'
+            type="checkbox"
+            name="priority"
+            id="priority"
             // value={withPriority}
             // onChange={(e) => setWithPriority(e.target.checked)}
           />
-          <label htmlFor='priority'>
-            Want to yo give your order priority?
-          </label>
+          <label htmlFor="priority">Want to yo give your order priority?</label>
         </div>
 
         <div>
-          <input
-            type='hidden'
-            name='cart'
-            value={JSON.stringify(cart)}
-          />
+          <input type="hidden" name="cart" value={JSON.stringify(cart)} />
           <button disabled={isSubmitting}>
-            {isSubmitting
-              ? "Creating order..."
-              : "Order now"}
+            {isSubmitting ? "Creating order..." : "Order now"}
           </button>
         </div>
       </Form>
