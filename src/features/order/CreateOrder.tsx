@@ -66,7 +66,7 @@ function CreateOrder() {
           </div>
         </div>
 
-        <div>
+        <div className="space-x-2 py-4">
           <input
             type="checkbox"
             name="priority"
@@ -79,7 +79,10 @@ function CreateOrder() {
 
         <div>
           <input type="hidden" name="cart" value={JSON.stringify(cart)} />
-          <button disabled={isSubmitting}>
+          <button
+            className="rounded-full bg-yellow-500 px-4 py-3 font-semibold uppercase tracking-wide text-stone-800 transition-colors duration-300 hover:bg-yellow-400 focus:bg-yellow-300 focus:outline-none focus:ring focus:ring-yellow-300 focus:ring-offset-2 disabled:cursor-not-allowed disabled:bg-stone-300"
+            disabled={isSubmitting}
+          >
             {isSubmitting ? "Creating order..." : "Order now"}
           </button>
         </div>
