@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
 import LinkButton from "../../ui/LinkButton";
+import Button from "../../ui/Button";
 
 const fakeCart = [
   {
@@ -36,8 +36,8 @@ function Cart() {
       <h2>Your cart, %NAME%</h2>
 
       <div>
-        <Link to="/order/new">Order pizzas</Link>
-        <button className="btn-primary">Clear cart</button>
+        <Button to="/order/new">Order pizzas</Button>
+        <Button>Clear cart</Button>
       </div>
     </div>
   );
