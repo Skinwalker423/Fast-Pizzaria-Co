@@ -38,7 +38,7 @@ function Cart() {
 
       <div>
         <Link to="/order/new">Order pizzas</Link>
-        <button className="bg-yellow-500 px-4 py-2">Clear cart</button>
+        <button className="btn-primary">Clear cart</button>
       </div>
     </div>
   );
