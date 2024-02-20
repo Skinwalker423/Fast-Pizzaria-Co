@@ -7,16 +7,19 @@ interface LinkButtonProps extends PropsWithChildren {
 
 const LinkButton: React.FC<LinkButtonProps> = ({ children, to, ...rest }) => {
   const navigate = useNavigate();
+
+  const classes = "text-sm text-blue-500 hover:text-blue-700 hover:underline";
+
   if (to === "-1") {
-    return <button onClick={() => navigate(-1)}>&larr; Go back</button>;
+    return (
+      <button className={classes} {...rest} onClick={() => navigate(-1)}>
+        {children}
+      </button>
+    );
   }
 
   return (
-    <Link
-      className="text-sm text-blue-500 hover:text-blue-700"
-      to={to}
-      {...rest}
-    >
+    <Link className={classes} to={to} {...rest}>
       {children}
     </Link>
   );
