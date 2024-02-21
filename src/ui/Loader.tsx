@@ -1,5 +1,9 @@
 const Loader = () => {
-  return <div className='loader'>Loader</div>;
+  return (
+    <div className="absolute inset-0 z-50 flex items-center justify-center bg-slate-200/0 backdrop-blur-sm">
+      <div className="loader"></div>
+    </div>
+  );
 };
 
 export default Loader;
