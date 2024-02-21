@@ -4,19 +4,13 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: [
-          "system-ui",
-          "-apple-system",
-          "BlinkMacSystemFont",
-          '"Segoe UI"',
-          "Roboto",
-          "Oxygen",
-          "Ubuntu",
-          "Cantarell",
-          '"Open Sans"',
-          '"Helvetica Neue"',
-          "sans-serif",
-        ],
+        sans: ['"Roboto Mono"', "sans-serif"],
+      },
+      fontSize: {
+        huge: "80rem",
+      },
+      height: {
+        screen: "100dvh",
       },
     },
   },
