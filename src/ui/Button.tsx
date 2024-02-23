@@ -22,7 +22,7 @@ const Button: React.FC<ButtonProps> = ({
   const sizes = {
     small: "px-2 py-1 text-xs",
     medium: "px-3 py-2 sm:px-4 sm:py-2 text-sm",
-    large: "px-4 py-3 sm:px-6 sm:py-4",
+    large: "px-4 py-3 sm:px-6 sm:py-4 text-sm",
   };
   const colors = {
     primary:
