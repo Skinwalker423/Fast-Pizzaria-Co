@@ -38,36 +38,31 @@ function CreateOrder() {
 
   return (
     <div className="mx-5 my-10">
-      <h2>Ready to order? Let&apos;s go!</h2>
+      <h2 className="mb-8 text-xl font-semibold">
+        Ready to order? Let&apos;s go!
+      </h2>
 
       <Form method="POST">
-        <div>
-          <label>First Name</label>
-          <div>
-            <input
-              className="form-input"
-              type="text"
-              name="customer"
-              required
-            />
-          </div>
+        <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
+          <label className="sm:basis-40">First Name</label>
+          <input className="form-input" type="text" name="customer" required />
         </div>
 
-        <div>
-          <label>Phone number</label>
-          <div>
+        <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
+          <label className="sm:basis-40">Phone number</label>
+          <div className="grow">
             <input className="form-input" type="tel" name="phone" required />
+            {formErrors?.phone && (
+              <span>
+                <h5 style={{ color: "red" }}>{formErrors.phone}</h5>
+              </span>
+            )}
           </div>
-          {formErrors?.phone && (
-            <span>
-              <h5 style={{ color: "red" }}>{formErrors.phone}</h5>
-            </span>
-          )}
         </div>
 
-        <div>
-          <label>Address</label>
-          <div>
+        <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
+          <label className="sm:basis-40">Address</label>
+          <div className="grow">
             <input className="form-input" type="text" name="address" required />
           </div>
         </div>
