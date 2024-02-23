@@ -37,7 +37,7 @@ function CreateOrder() {
   const isSubmitting = navigation.state === "submitting";
 
   return (
-    <div className="mx-5 my-10">
+    <div className="mx-5 my-10 w-full">
       <h2 className="mb-8 text-xl font-semibold">
         Ready to order? Let&apos;s go!
       </h2>
@@ -45,7 +45,14 @@ function CreateOrder() {
       <Form method="POST">
         <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
           <label className="sm:basis-40">First Name</label>
-          <input className="form-input" type="text" name="customer" required />
+          <div className="grow">
+            <input
+              className="form-input"
+              type="text"
+              name="customer"
+              required
+            />
+          </div>
         </div>
 
         <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
@@ -67,7 +74,7 @@ function CreateOrder() {
           </div>
         </div>
 
-        <div className="space-x-4 py-4">
+        <div className="mb-12 flex items-center gap-5">
           <input
             type="checkbox"
             name="priority"
