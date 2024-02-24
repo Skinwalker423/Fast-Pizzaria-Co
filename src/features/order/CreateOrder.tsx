@@ -2,6 +2,7 @@
 
 import { Form, useActionData, useNavigation } from "react-router-dom";
 import Button from "../../ui/Button";
+import useUser from "../user/useUser";
 
 const fakeCart = [
   {
@@ -30,7 +31,7 @@ const fakeCart = [
 function CreateOrder() {
   // const [withPriority, setWithPriority] = useState(false);
   const cart = fakeCart;
-
+  const { username } = useUser();
   const navigation = useNavigation();
   const formErrors = useActionData() as any;
 
@@ -51,6 +52,7 @@ function CreateOrder() {
               type="text"
               name="customer"
               required
+              defaultValue={username}
             />
           </div>
         </div>
