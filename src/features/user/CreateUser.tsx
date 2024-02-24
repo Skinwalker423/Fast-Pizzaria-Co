@@ -1,13 +1,22 @@
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
 import Button from "../../ui/Button";
-import useUpdateName from "./useUpdateName";
+import useUser from "./useUser";
+import { useNavigate } from "react-router-dom";
 
 function CreateUser() {
-  const { dispatchUpdateName, username } = useUpdateName();
+  const { dispatchUpdateName, username } = useUser();
+  const [userInput, setUserInput] = useState("");
+  const navigate = useNavigate();
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (!userInput) return;
+    dispatchUpdateName(userInput);
+    navigate("/menu");
   }
+
+  if (username)
+    return <Button to="/menu">Continue browsing, {username}</Button>;
 
   return (
     <form onSubmit={handleSubmit}>
@@ -19,13 +28,13 @@ function CreateUser() {
         className="form-input mb-5 w-72"
         type="text"
         placeholder="Your full name"
-        value={username}
-        onChange={(e) => dispatchUpdateName(e.target.value)}
+        value={userInput}
+        onChange={(e) => setUserInput(e.target.value)}
       />
 
-      {username !== "" && (
+      {userInput !== "" && (
         <div>
-          <Button>Start ordering, {username}</Button>
+          <Button>Start ordering</Button>
         </div>
       )}
     </form>

@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState, AppDispatch } from "../../app/store";
 import { updateName } from "./userSlice";
 
-const useUpdateName = () => {
+const useUser = () => {
   const username = useSelector((state: RootState) => state.user.username);
   const dispatch = useDispatch<AppDispatch>();
   const dispatchUpdateName = (name: string) => {
@@ -11,4 +11,4 @@ const useUpdateName = () => {
   return { username, dispatchUpdateName };
 };
 
-export default useUpdateName;
+export default useUser;

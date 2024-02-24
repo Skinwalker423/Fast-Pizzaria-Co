@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { getAddress } from "../../services/apiGeocoding";
 
 function getPosition() {
@@ -35,7 +35,7 @@ export const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    updateName: (state, action) => {
+    updateName: (state, action: PayloadAction<string>) => {
       state.username = action.payload;
     },
   },
