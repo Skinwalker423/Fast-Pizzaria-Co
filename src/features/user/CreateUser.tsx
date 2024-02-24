@@ -1,12 +1,9 @@
 import { FormEvent } from "react";
-import { useSelector, useDispatch } from "react-redux";
 import Button from "../../ui/Button";
-import { updateName } from "./userSlice";
-import { RootState } from "../../app/store";
+import useUpdateName from "./useUpdateName";
 
 function CreateUser() {
-  const username = useSelector((state: RootState) => state.user.username);
-  const dispatch = useDispatch();
+  const { dispatchUpdateName, username } = useUpdateName();
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -23,7 +20,7 @@ function CreateUser() {
         type="text"
         placeholder="Your full name"
         value={username}
-        onChange={(e) => dispatch(updateName(e.target.value))}
+        onChange={(e) => dispatchUpdateName(e.target.value)}
       />
 
       {username !== "" && (
