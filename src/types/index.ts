@@ -1,3 +1,13 @@
+export type CartItemProps = {
+  addIngredients: [];
+  name: string;
+  pizzaId: number;
+  quantity: number;
+  removeIngredients: [];
+  totalPrice: number;
+  unitPrice: number;
+};
+
 export type OrderItem = {
   id: string;
   status: string;
@@ -6,7 +16,7 @@ export type OrderItem = {
   orderPrice: number;
   estimatedDelivery: Date;
   phone: string;
-  cart: [];
+  cart: [CartItemProps];
 };
 
 export type ConfirmedOrder = {

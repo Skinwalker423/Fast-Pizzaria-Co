@@ -6,10 +6,11 @@ import {
   formatCurrency,
   formatDate,
 } from "../../utils/helpers";
-import { OrderItem } from "../../types";
+import { OrderItem as OrderItemProps } from "../../types";
+import OrderItem from "./OrderItem";
 
 function Order() {
-  const order = useLoaderData() as OrderItem;
+  const order = useLoaderData() as OrderItemProps;
 
   console.log("order", order);
   // Everyone can search for all orders, so for privacy reasons we're gonna gonna exclude names or address, these are only for the restaurant staff
@@ -27,40 +28,57 @@ function Order() {
   console.log(id, cart);
 
   return (
-    <div>
-      <div>
-        <h2>Status</h2>
+    <div className="space-y-8 px-4 py-6">
+      <div className="flex flex-wrap justify-between gap-3">
+        <h2 className="text-xl font-semibold">Order #{id} Status</h2>
 
-        <div>
-          {priority && <span>Priority</span>}
-          <span>{status} order</span>
+        <div className="space-x-2">
+          {priority && (
+            <span className="rounded-full bg-red-500 px-3 py-1 text-sm font-semibold tracking-wide text-red-100">
+              Priority
+            </span>
+          )}
+          <span className="rounded-full bg-green-500 px-3 py-1 text-sm font-semibold tracking-wide text-green-100">
+            {status} order
+          </span>
         </div>
       </div>
 
-      <div>
-        <p>
+      <div className="flex flex-wrap justify-between gap-3 bg-stone-200 px-5 py-6">
+        <p className="font-medium">
           {deliveryIn >= 0
-            ? `Only ${calcMinutesLeft(
-                estimatedDelivery
-              )} minutes left 😃`
+            ? `Only ${calcMinutesLeft(estimatedDelivery)} minutes left 😃`
             : "Order should have arrived"}
         </p>
-        <p>
-          (Estimated delivery:{" "}
-          {formatDate(estimatedDelivery)})
+        <p className="text-xs text-stone-500">
+          (Estimated delivery: {formatDate(estimatedDelivery)})
         </p>
       </div>
 
-      <div>
-        <p>Price pizza: {formatCurrency(orderPrice)}</p>
+      <ul>
+        {cart.map((item) => {
+          return (
+            <OrderItem
+              item={item}
+              key={item.pizzaId}
+              ingredients={[]}
+              isLoadingIngredients={false}
+            />
+          );
+        })}
+      </ul>
+
+      <div className="space-y-2 bg-stone-200 px-5 py-6">
+        <p className="text-sm font-medium text-stone-600">
+          Price pizza: {formatCurrency(orderPrice)}
+        </p>
         {priority && (
-          <p>
+          <p className="text-sm font-medium text-stone-600">
             Price priority: {formatCurrency(priorityPrice)}
           </p>
         )}
-        <p>
-          To pay on delivery:{" "}
-          {formatCurrency(orderPrice + priorityPrice)}
+        <p className="text-lg font-semibold">
+          To pay on delivery: {formatCurrency(orderPrice + priorityPrice)}
         </p>
       </div>
     </div>
