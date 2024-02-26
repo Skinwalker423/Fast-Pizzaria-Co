@@ -1,6 +1,9 @@
+import { useDispatch, useSelector } from "react-redux";
 import { MenuItem as Item } from "../../types";
 import Button from "../../ui/Button";
 import { formatCurrency } from "../../utils/helpers";
+import { addToCart } from "../cart/cartSlice";
+import { RootState } from "../../app/store";
 
 interface MenuItemProps {
   pizza: Item;
@@ -8,8 +11,11 @@ interface MenuItemProps {
 
 function MenuItem({ pizza }: MenuItemProps) {
   const { id, name, unitPrice, ingredients, soldOut, imageUrl } = pizza;
+  const cart = useSelector((state: RootState) => state.cart.cart);
+  const dipatch = useDispatch();
 
-  console.log(id);
+  console.log(id, cart);
+  const quantity = 1;
 
   return (
     <li className="flex gap-4 py-2">
@@ -32,7 +38,23 @@ function MenuItem({ pizza }: MenuItemProps) {
             </p>
           )}
           {!soldOut && (
-            <Button size="medium" className="px-2 py-2">
+            <Button
+              onClick={() =>
+                dipatch(
+                  addToCart({
+                    addIngredients: ingredients,
+                    name,
+                    pizzaId: id,
+                    quantity,
+                    removeIngredients: [],
+                    unitPrice,
+                    totalPrice: unitPrice * quantity,
+                  }),
+                )
+              }
+              size="medium"
+              className="px-2 py-2"
+            >
               Add to Cart
             </Button>
           )}

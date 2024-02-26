@@ -1,7 +1,7 @@
 export type CartItemProps = {
   addIngredients: string[];
   name: string;
-  pizzaId: number;
+  pizzaId: string;
   quantity: number;
   removeIngredients: string[];
   totalPrice: number;

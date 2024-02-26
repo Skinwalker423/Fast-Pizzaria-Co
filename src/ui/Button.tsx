@@ -8,6 +8,7 @@ interface ButtonProps extends PropsWithChildren {
   color?: "primary" | "danger" | "warning" | "secondary";
   textColor?: string;
   size?: "small" | "medium" | "large";
+  onClick?: () => void;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -17,6 +18,7 @@ const Button: React.FC<ButtonProps> = ({
   className,
   color = "primary",
   to,
+  onClick,
   ...rest
 }) => {
   const sizes = {
@@ -43,7 +45,7 @@ const Button: React.FC<ButtonProps> = ({
     );
 
   return (
-    <button disabled={disabled} {...rest} className={classes}>
+    <button onClick={onClick} disabled={disabled} {...rest} className={classes}>
       {children}
     </button>
   );
