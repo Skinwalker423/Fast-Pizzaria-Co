@@ -1,9 +1,11 @@
+import { useDispatch } from "react-redux";
 import Button from "../../ui/Button";
 import { formatCurrency } from "../../utils/helpers";
+import { removeFromCart } from "./cartSlice";
 
 function CartItem({ item }) {
   const { pizzaId, name, quantity, totalPrice } = item;
-  console.log(pizzaId);
+  const dispatch = useDispatch();
 
   return (
     <li className="py-3 sm:flex sm:justify-between">
@@ -12,7 +14,11 @@ function CartItem({ item }) {
       </p>
       <div className="flex justify-between sm:gap-6">
         <p className="text-green-700">{formatCurrency(totalPrice)}</p>
-        <Button size="small" color="danger">
+        <Button
+          onClick={() => dispatch(removeFromCart(pizzaId))}
+          size="small"
+          color="danger"
+        >
           Delete
         </Button>
       </div>

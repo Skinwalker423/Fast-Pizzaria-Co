@@ -25,7 +25,7 @@ const cartSlice = createSlice({
       }
     },
     removeFromCart: (state, action: PayloadAction<string>) => {
-      state.cart.filter((item) => item.pizzaId !== action.payload);
+      state.cart = state.cart.filter((item) => item.pizzaId !== action.payload);
     },
     increaseItemQuanity: (state, action: PayloadAction<string>) => {
       state.cart = state.cart.map((item) => {
@@ -43,12 +43,16 @@ const cartSlice = createSlice({
       });
     },
     decreaseItemQuanity: (state, action: PayloadAction<string>) => {
-      state.cart.map((item) => {
+      state.cart = state.cart.map((item) => {
         if (item.pizzaId === action.payload) {
           return {
             ...item,
             quantity: item.quantity - 1,
             totalPrice: item.totalPrice - item.unitPrice,
+          };
+        } else {
+          return {
+            ...item,
           };
         }
       });
@@ -59,5 +63,11 @@ const cartSlice = createSlice({
   },
 });
 
-export const { addToCart, increaseItemQuanity } = cartSlice.actions;
+export const {
+  addToCart,
+  increaseItemQuanity,
+  decreaseItemQuanity,
+  clearCart,
+  removeFromCart,
+} = cartSlice.actions;
 export default cartSlice.reducer;
