@@ -15,47 +15,22 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action: PayloadAction<CartItemProps>) => {
-      const isItemInCart = state.cart.find(
-        (item) => item.pizzaId === action.payload.pizzaId,
-      );
-      if (isItemInCart) {
-        return;
-      } else {
-        state.cart.push(action.payload);
-      }
+      state.cart.push(action.payload);
     },
     removeFromCart: (state, action: PayloadAction<string>) => {
       state.cart = state.cart.filter((item) => item.pizzaId !== action.payload);
     },
     increaseItemQuanity: (state, action: PayloadAction<string>) => {
-      state.cart = state.cart.map((item) => {
-        if (item.pizzaId === action.payload) {
-          return {
-            ...item,
-            quantity: item.quantity + 1,
-            totalPrice: item.totalPrice + item.unitPrice,
-          };
-        } else {
-          return {
-            ...item,
-          };
-        }
-      });
+      const item = state.cart.find((item) => item.pizzaId === action.payload);
+      if (!item) return;
+      item.quantity += 1;
+      item.totalPrice = item.quantity * item.unitPrice;
     },
     decreaseItemQuanity: (state, action: PayloadAction<string>) => {
-      state.cart = state.cart.map((item) => {
-        if (item.pizzaId === action.payload) {
-          return {
-            ...item,
-            quantity: item.quantity - 1,
-            totalPrice: item.totalPrice - item.unitPrice,
-          };
-        } else {
-          return {
-            ...item,
-          };
-        }
-      });
+      const item = state.cart.find((item) => item.pizzaId === action.payload);
+      if (!item) return;
+      item.quantity -= 1;
+      item.totalPrice = item.quantity * item.unitPrice;
     },
     clearCart: (state) => {
       state.cart = [];
