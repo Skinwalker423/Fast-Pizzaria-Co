@@ -6,6 +6,7 @@ import { clearCart, getCart } from "./cartSlice";
 import LinkButton from "../../ui/LinkButton";
 import Button from "../../ui/Button";
 import CartItem from "./CartItem";
+import EmptyCart from "./EmptyCart";
 
 function Cart() {
   const cart = useSelector(getCart);
@@ -15,6 +16,8 @@ function Cart() {
   const handleClearCart = () => {
     dispatch(clearCart());
   };
+
+  if (!cart.length) return <EmptyCart />;
 
   return (
     <div className="px-4 py-3">
