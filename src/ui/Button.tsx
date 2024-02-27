@@ -18,7 +18,7 @@ const Button: React.FC<ButtonProps> = ({
   className,
   color = "primary",
   to,
-  onClick,
+
   ...rest
 }) => {
   const sizes = {
@@ -45,7 +45,7 @@ const Button: React.FC<ButtonProps> = ({
     );
 
   return (
-    <button onClick={onClick} disabled={disabled} {...rest} className={classes}>
+    <button disabled={disabled} {...rest} className={classes}>
       {children}
     </button>
   );

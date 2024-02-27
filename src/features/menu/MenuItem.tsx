@@ -14,26 +14,21 @@ function MenuItem({ pizza }: MenuItemProps) {
   const { cart } = useSelector((state: RootState) => state.cart);
   const dipatch = useDispatch();
 
-  console.log(id, cart);
-  const quantity = 1;
-
-  const isInCart = cart.some((item) => item.pizzaId === id);
-
   function handleAddItem() {
+    const isInCart = cart.some((item) => item.pizzaId === id);
     if (isInCart) {
       dipatch(increaseItemQuanity(id));
     } else {
-      dipatch(
-        addToCart({
-          addIngredients: ingredients,
-          name,
-          pizzaId: id,
-          quantity,
-          removeIngredients: [],
-          unitPrice,
-          totalPrice: unitPrice * quantity,
-        }),
-      );
+      const newItem = {
+        addIngredients: ingredients,
+        name,
+        pizzaId: id,
+        quantity: 1,
+        removeIngredients: [],
+        unitPrice,
+        totalPrice: unitPrice * 1,
+      };
+      dipatch(addToCart(newItem));
     }
   }
 
