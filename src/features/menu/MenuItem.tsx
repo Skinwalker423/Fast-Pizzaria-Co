@@ -3,6 +3,7 @@ import { MenuItem as Item } from "../../types";
 import Button from "../../ui/Button";
 import { formatCurrency } from "../../utils/helpers";
 import { addToCart, getCart, increaseItemQuanity } from "../cart/cartSlice";
+import DeleteItem from "../cart/DeleteItem";
 
 interface MenuItemProps {
   pizza: Item;
@@ -13,8 +14,8 @@ function MenuItem({ pizza }: MenuItemProps) {
   const cart = useSelector(getCart);
   const dipatch = useDispatch();
 
+  const isInCart = cart.some((item) => item.pizzaId === id);
   function handleAddItem() {
-    const isInCart = cart.some((item) => item.pizzaId === id);
     if (isInCart) {
       dipatch(increaseItemQuanity(id));
     } else {
@@ -52,9 +53,16 @@ function MenuItem({ pizza }: MenuItemProps) {
             </p>
           )}
           {!soldOut && (
-            <Button onClick={handleAddItem} size="medium" className="px-2 py-2">
-              Add to Cart
-            </Button>
+            <div className="flex justify-center">
+              <Button
+                onClick={handleAddItem}
+                size="medium"
+                className="px-2 py-2"
+              >
+                Add to Cart
+              </Button>
+              {isInCart && <DeleteItem pizzaId={id} size="medium" />}
+            </div>
           )}
         </div>
       </div>
