@@ -13,6 +13,10 @@ function Cart() {
   const { username } = useUser();
   const dispatch = useDispatch();
 
+  const handleClearCart = () => {
+    dispatch(clearCart());
+  };
+
   return (
     <div className="px-4 py-3">
       <LinkButton to="/menu">&larr; Back to menu</LinkButton>
@@ -24,7 +28,7 @@ function Cart() {
       </ul>
       <div className="mt-6 space-x-2">
         <Button to="/order/new">Order pizzas</Button>
-        <Button onClick={() => dispatch(clearCart())} color="secondary">
+        <Button onClick={handleClearCart} color="secondary">
           Clear cart
         </Button>
       </div>
