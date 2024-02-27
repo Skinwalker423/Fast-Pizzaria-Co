@@ -1,13 +1,17 @@
+import { useDispatch, useSelector } from "react-redux";
+
+import useUser from "../user/useUser";
+import { clearCart } from "./cartSlice";
+import { RootState } from "../../app/store";
+
 import LinkButton from "../../ui/LinkButton";
 import Button from "../../ui/Button";
 import CartItem from "./CartItem";
-import useUser from "../user/useUser";
-import { useSelector } from "react-redux";
-import { RootState } from "../../app/store";
 
 function Cart() {
   const cart = useSelector((state: RootState) => state.cart.cart);
   const { username } = useUser();
+  const dispatch = useDispatch();
 
   return (
     <div className="px-4 py-3">
@@ -20,7 +24,9 @@ function Cart() {
       </ul>
       <div className="mt-6 space-x-2">
         <Button to="/order/new">Order pizzas</Button>
-        <Button color="secondary">Clear cart</Button>
+        <Button onClick={() => dispatch(clearCart())} color="secondary">
+          Clear cart
+        </Button>
       </div>
     </div>
   );
