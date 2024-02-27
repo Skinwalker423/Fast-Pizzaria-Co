@@ -2,8 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { MenuItem as Item } from "../../types";
 import Button from "../../ui/Button";
 import { formatCurrency } from "../../utils/helpers";
-import { addToCart, increaseItemQuanity } from "../cart/cartSlice";
-import { RootState } from "../../app/store";
+import { addToCart, getCart, increaseItemQuanity } from "../cart/cartSlice";
 
 interface MenuItemProps {
   pizza: Item;
@@ -11,7 +10,7 @@ interface MenuItemProps {
 
 function MenuItem({ pizza }: MenuItemProps) {
   const { id, name, unitPrice, ingredients, soldOut, imageUrl } = pizza;
-  const { cart } = useSelector((state: RootState) => state.cart);
+  const cart = useSelector(getCart);
   const dipatch = useDispatch();
 
   function handleAddItem() {
