@@ -1,6 +1,11 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Button from "../../ui/Button";
-import { increaseItemQuanity, decreaseItemQuanity } from "./cartSlice";
+import {
+  increaseItemQuanity,
+  decreaseItemQuanity,
+  getItemQuantityWithId,
+  removeFromCart,
+} from "./cartSlice";
 
 type UpdateItemQuantityProps = {
   pizzaId: string;
@@ -8,12 +13,16 @@ type UpdateItemQuantityProps = {
 
 const UpdateItemQuantity = ({ pizzaId }: UpdateItemQuantityProps) => {
   const dispatch = useDispatch();
-
+  const itemQty = useSelector(getItemQuantityWithId(pizzaId));
   const handleIncreaseQuanity = () => {
     dispatch(increaseItemQuanity(pizzaId));
   };
   const handleDecreaseQuanity = () => {
-    dispatch(decreaseItemQuanity(pizzaId));
+    if (itemQty === 1) {
+      dispatch(removeFromCart(pizzaId));
+    } else {
+      dispatch(decreaseItemQuanity(pizzaId));
+    }
   };
 
   return (
