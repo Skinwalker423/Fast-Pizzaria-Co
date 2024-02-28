@@ -12,13 +12,18 @@ const UpdateItemQuantity = ({ pizzaId }: UpdateItemQuantityProps) => {
   const handleIncreaseQuanity = () => {
     dispatch(increaseItemQuanity(pizzaId));
   };
+  const handleDecreaseQuanity = () => {
+    dispatch(decreaseItemQuanity(pizzaId));
+  };
 
   return (
     <div className="flex items-center gap-1 md:gap-3">
-      <Button size="small" onClick={handleIncreaseQuanity}>
+      <Button size="small" onClick={handleDecreaseQuanity}>
         -
       </Button>
-      <Button size="small">+</Button>
+      <Button onClick={handleIncreaseQuanity} size="small">
+        +
+      </Button>
     </div>
   );
 };
