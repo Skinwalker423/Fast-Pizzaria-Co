@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { MenuItem as Item } from "../../types";
 import Button from "../../ui/Button";
 import { formatCurrency } from "../../utils/helpers";
-import { addToCart, getCart, increaseItemQuanity } from "../cart/cartSlice";
+import { addToCart, getItemQuantityWithId } from "../cart/cartSlice";
 import DeleteItem from "../cart/DeleteItem";
 
 interface MenuItemProps {
@@ -11,25 +11,20 @@ interface MenuItemProps {
 
 function MenuItem({ pizza }: MenuItemProps) {
   const { id, name, unitPrice, ingredients, soldOut, imageUrl } = pizza;
-  const cart = useSelector(getCart);
+  const itemQty = useSelector(getItemQuantityWithId(id));
   const dipatch = useDispatch();
 
-  const isInCart = cart.some((item) => item.pizzaId === id);
   function handleAddItem() {
-    if (isInCart) {
-      dipatch(increaseItemQuanity(id));
-    } else {
-      const newItem = {
-        addIngredients: ingredients,
-        name,
-        pizzaId: id,
-        quantity: 1,
-        removeIngredients: [],
-        unitPrice,
-        totalPrice: unitPrice * 1,
-      };
-      dipatch(addToCart(newItem));
-    }
+    const newItem = {
+      addIngredients: ingredients,
+      name,
+      pizzaId: id,
+      quantity: 1,
+      removeIngredients: [],
+      unitPrice,
+      totalPrice: unitPrice * 1,
+    };
+    dipatch(addToCart(newItem));
   }
 
   return (
@@ -52,18 +47,12 @@ function MenuItem({ pizza }: MenuItemProps) {
               Sold out
             </p>
           )}
-          {!soldOut && (
-            <div className="flex justify-center">
-              <Button
-                onClick={handleAddItem}
-                size="medium"
-                className="px-2 py-2"
-              >
-                Add to Cart
-              </Button>
-              {isInCart && <DeleteItem pizzaId={id} size="medium" />}
-            </div>
+          {!soldOut && !itemQty && (
+            <Button onClick={handleAddItem} size="medium" className="px-2 py-2">
+              Add to Cart
+            </Button>
           )}
+          {itemQty > 0 && <DeleteItem pizzaId={id} size="medium" />}
         </div>
       </div>
     </li>
