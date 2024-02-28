@@ -32,6 +32,7 @@ function Cart() {
         <Button disabled={true} to={cart.length ? "/order/new" : "/menu"}>
           {cart.length ? "order" : "browse"} pizzas
         </Button>
+
         <Button onClick={handleClearCart} color="secondary">
           Clear cart
         </Button>
