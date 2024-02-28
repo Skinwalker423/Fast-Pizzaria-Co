@@ -24,11 +24,11 @@ const UpdateItemQuantity = ({ pizzaId }: UpdateItemQuantityProps) => {
 
   return (
     <div className="flex items-center gap-1 md:gap-3">
-      <Button size="small" onClick={handleDecreaseQuanity}>
+      <Button size="medium" onClick={handleDecreaseQuanity}>
         -
       </Button>
       <span className="text-sm font-medium text-stone-800">{itemQty}</span>
-      <Button onClick={handleIncreaseQuanity} size="small">
+      <Button onClick={handleIncreaseQuanity} size="medium">
         +
       </Button>
     </div>

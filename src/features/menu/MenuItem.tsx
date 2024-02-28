@@ -4,6 +4,7 @@ import Button from "../../ui/Button";
 import { formatCurrency } from "../../utils/helpers";
 import { addToCart, getItemQuantityWithId } from "../cart/cartSlice";
 import DeleteItem from "../cart/DeleteItem";
+import UpdateItemQuantity from "../cart/UpdateItemQuantity";
 
 interface MenuItemProps {
   pizza: Item;
@@ -52,7 +53,12 @@ function MenuItem({ pizza }: MenuItemProps) {
               Add to Cart
             </Button>
           )}
-          {itemQty > 0 && <DeleteItem pizzaId={id} size="medium" />}
+          {itemQty > 0 && (
+            <div className="sm: flex items-center gap-3 sm:gap-8">
+              <UpdateItemQuantity pizzaId={id} />
+              <DeleteItem pizzaId={id} size="medium" />
+            </div>
+          )}
         </div>
       </div>
     </li>
