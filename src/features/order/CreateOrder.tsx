@@ -4,12 +4,18 @@ import { Form, useActionData, useNavigation } from "react-router-dom";
 import Button from "../../ui/Button";
 import useUser from "../user/useUser";
 import { useSelector } from "react-redux";
-import { getCart } from "../cart/cartSlice";
+import { getCart, getCartTotalPrice } from "../cart/cartSlice";
 import EmptyCart from "../cart/EmptyCart";
+import { formatCurrency } from "../../utils/helpers";
+import { useState } from "react";
 
 function CreateOrder() {
-  // const [withPriority, setWithPriority] = useState(false);
+  const [withPriority, setWithPriority] = useState(false);
   const cart = useSelector(getCart);
+
+  const totalCartPrice = useSelector(getCartTotalPrice);
+  const priorityPrice = withPriority ? totalCartPrice * 0.2 : 0;
+  const totalPrice = totalCartPrice + priorityPrice;
   const { username } = useUser();
   const navigation = useNavigation();
   const formErrors = useActionData() as any;
@@ -66,7 +72,7 @@ function CreateOrder() {
             id="priority"
             className="h-6 w-6 accent-yellow-500 focus:bg-yellow-300 focus:outline-none focus:ring focus:ring-yellow-300 focus:ring-offset-2"
             // value={withPriority}
-            // onChange={(e) => setWithPriority(e.target.checked)}
+            onChange={(e) => setWithPriority(e.target.checked)}
           />
           <label htmlFor="priority">Want to yo give your order priority?</label>
         </div>
@@ -74,7 +80,9 @@ function CreateOrder() {
         <div>
           <input type="hidden" name="cart" value={JSON.stringify(cart)} />
           <Button disabled={isSubmitting}>
-            {isSubmitting ? "Creating order..." : "Order now"}
+            {isSubmitting
+              ? "Creating order..."
+              : `Order now for ${formatCurrency(totalPrice)}`}
           </Button>
         </div>
       </Form>

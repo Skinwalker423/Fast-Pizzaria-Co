@@ -25,8 +25,6 @@ function Order() {
   } = order;
   const deliveryIn = calcMinutesLeft(estimatedDelivery);
 
-  console.log(id, cart);
-
   return (
     <div className="space-y-8 px-4 py-6">
       <div className="flex flex-wrap justify-between gap-3">
