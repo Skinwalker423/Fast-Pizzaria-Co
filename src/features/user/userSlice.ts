@@ -1,9 +1,4 @@
-import {
-  PayloadAction,
-  SerializedError,
-  createAsyncThunk,
-  createSlice,
-} from "@reduxjs/toolkit";
+import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { getAddress } from "../../services/apiGeocoding";
 
 function getPosition() {
@@ -28,7 +23,7 @@ function getPosition() {
 //   return { position, address };
 // }
 
-const fetchAddress = createAsyncThunk("user/fetchAddress", async () => {
+export const fetchAddress = createAsyncThunk("user/fetchAddress", async () => {
   // 1) We get the user's geolocation position
   const positionObj = await getPosition();
   const position = {
@@ -52,7 +47,7 @@ export interface UserState {
     latitude: string;
     longitude: string;
   };
-  error?: SerializedError;
+  error?: string;
 }
 
 const initialState: UserState = {
@@ -63,11 +58,11 @@ const initialState: UserState = {
     latitude: "",
     longitude: "",
   },
-  error: undefined,
+  error: "",
 };
 
 export const userSlice = createSlice({
-  name: "user",
+  name: "user/fetchAddress",
   initialState,
   reducers: {
     updateName: (state, action: PayloadAction<string>) => {
@@ -82,7 +77,7 @@ export const userSlice = createSlice({
     builder.addCase(fetchAddress.rejected, (state, action) => {
       console.log("rejected");
       state.status = "error";
-      state.error = action.error;
+      state.error = action.error.message;
     });
     builder.addCase(fetchAddress.fulfilled, (state, action) => {
       state.address = action.payload.address;

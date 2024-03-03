@@ -3,16 +3,17 @@
 import { Form, useActionData, useNavigation } from "react-router-dom";
 import Button from "../../ui/Button";
 import useUser from "../user/useUser";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getCart, getCartTotalPrice } from "../cart/cartSlice";
 import EmptyCart from "../cart/EmptyCart";
 import { formatCurrency } from "../../utils/helpers";
 import { useState } from "react";
+import { fetchAddress } from "../user/userSlice";
 
 function CreateOrder() {
   const [withPriority, setWithPriority] = useState(false);
   const cart = useSelector(getCart);
-
+  const dispatch = useDispatch();
   const totalCartPrice = useSelector(getCartTotalPrice);
   const priorityPrice = withPriority ? totalCartPrice * 0.2 : 0;
   const totalPrice = totalCartPrice + priorityPrice;
@@ -29,7 +30,13 @@ function CreateOrder() {
       <h2 className="mb-8 text-xl font-semibold">
         Ready to order? Let&apos;s go!
       </h2>
-
+      <button
+        onClick={() => {
+          dispatch<any>(fetchAddress());
+        }}
+      >
+        Update Address
+      </button>
       <Form method="POST">
         <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
           <label className="sm:basis-40">First Name</label>
