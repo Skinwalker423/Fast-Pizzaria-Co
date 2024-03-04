@@ -1,4 +1,4 @@
-import { PropsWithChildren } from "react";
+import { MouseEvent, PropsWithChildren } from "react";
 import { Link } from "react-router-dom";
 
 interface ButtonProps extends PropsWithChildren {
@@ -8,7 +8,7 @@ interface ButtonProps extends PropsWithChildren {
   color?: "primary" | "danger" | "warning" | "secondary";
   textColor?: string;
   size?: "small" | "medium" | "large";
-  onClick?: () => void;
+  onClick?: (e: MouseEvent<HTMLElement>) => void;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -18,12 +18,13 @@ const Button: React.FC<ButtonProps> = ({
   className,
   color = "primary",
   to,
+  onClick,
 
   ...rest
 }) => {
   const sizes = {
     small: "px-2 py-1 text-xs",
-    medium: "px-3 py-2 sm:px-4 sm:py-2 text-sm",
+    medium: "px-3 py-2 sm:px-4 sm:py-3 text-sm",
     large: "px-4 py-3 sm:px-6 sm:py-4 text-sm",
   };
   const colors = {
@@ -45,7 +46,7 @@ const Button: React.FC<ButtonProps> = ({
     );
 
   return (
-    <button disabled={disabled} {...rest} className={classes}>
+    <button onClick={onClick} disabled={disabled} {...rest} className={classes}>
       {children}
     </button>
   );

@@ -8,6 +8,7 @@ const useUser = () => {
   const dispatchUpdateName = (name: string) => {
     return dispatch(updateName(name));
   };
+
   return { username, dispatchUpdateName };
 };
 
