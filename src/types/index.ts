@@ -17,6 +17,7 @@ export type OrderItem = {
   estimatedDelivery: Date;
   phone: string;
   cart: CartItemProps[];
+  address: string;
 };
 
 export type ConfirmedOrder = {

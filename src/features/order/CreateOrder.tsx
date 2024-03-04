@@ -35,7 +35,7 @@ function CreateOrder() {
       </h2>
 
       <Form method="POST">
-        <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
+        <div className="mb-5 flex flex-col gap-2 max-sm:w-80 sm:flex-row sm:items-center">
           <label className="sm:basis-40">First Name</label>
           <div className="grow">
             <input
@@ -52,7 +52,7 @@ function CreateOrder() {
           <label className={`sm:basis-40 ${formErrors?.phone && "sm:mb-10"}`}>
             Phone number
           </label>
-          <div className="grow">
+          <div className="grow max-sm:w-80">
             <input className="form-input" type="tel" name="phone" required />
             {formErrors?.phone && (
               <p className=" mt-2 w-fit rounded-full bg-red-100 px-4 py-2 text-xs text-red-700">
@@ -64,7 +64,7 @@ function CreateOrder() {
 
         <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
           <label className="sm:basis-40">Address</label>
-          <div className="relative grow">
+          <div className="relative grow max-sm:w-80">
             <input
               disabled={isLoadingAddress}
               className="form-input"
@@ -89,7 +89,7 @@ function CreateOrder() {
                 dispatch(fetchAddress());
               }}
             >
-              {isLoadingAddress ? "Loading..." : "Retrieve Address"}
+              {isLoadingAddress ? "Loading..." : "Get Position"}
             </Button>
           </div>
         </div>
@@ -108,6 +108,11 @@ function CreateOrder() {
 
         <div>
           <input type="hidden" name="cart" value={JSON.stringify(cart)} />
+          <input
+            type="hidden"
+            name="position"
+            value={`${position.latitude}, ${position.longitude}`}
+          />
           <Button disabled={isSubmitting}>
             {isSubmitting
               ? "Creating order..."

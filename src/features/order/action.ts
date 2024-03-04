@@ -20,6 +20,8 @@ export async function action({ request }) {
     estimatedDelivery: Date;
     cart: string;
     phone: string;
+    address: string;
+    position: string;
   };
 
   const order: OrderItem = {
@@ -27,6 +29,8 @@ export async function action({ request }) {
     cart: JSON.parse(data["cart"]),
     priority: data["priority"] === "on",
   };
+
+  console.log("order", order);
 
   const errors = {} as any;
   console.log("order", order);

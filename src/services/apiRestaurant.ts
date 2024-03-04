@@ -1,12 +1,6 @@
-import {
-  ConfirmedOrder,
-  MenuData,
-  OrderItem,
-  UpdateOrder,
-} from "../types";
+import { ConfirmedOrder, MenuData, OrderItem, UpdateOrder } from "../types";
 
-const API_URL =
-  "https://react-fast-pizza-api.onrender.com/api";
+const API_URL = "https://react-fast-pizza-api.onrender.com/api";
 
 export async function getMenu(): Promise<MenuData> {
   const res = await fetch(`${API_URL}/menu`);
@@ -35,21 +29,19 @@ export async function createOrder(newOrder: OrderItem) {
         "Content-Type": "application/json",
       },
     });
+    console.log("response", res);
 
     if (!res.ok) throw Error();
-    const { data }: { data: ConfirmedOrder } =
-      await res.json();
+    const { data }: { data: ConfirmedOrder } = await res.json();
     console.log("data in create order", data);
     return data;
-  } catch {
+  } catch (err: any) {
+    console.error("something went wrong", err);
     throw Error("Failed creating your order");
   }
 }
 
-export async function updateOrder(
-  id: string,
-  updateObj: UpdateOrder
-) {
+export async function updateOrder(id: string, updateObj: UpdateOrder) {
   try {
     const res = await fetch(`${API_URL}/order/${id}`, {
       method: "PATCH",
