@@ -9,11 +9,12 @@ import EmptyCart from "../cart/EmptyCart";
 import { formatCurrency } from "../../utils/helpers";
 import { useState } from "react";
 import { fetchAddress } from "../user/userSlice";
+import { AppDispatch } from "../../app/store";
 
 function CreateOrder() {
   const [withPriority, setWithPriority] = useState(false);
   const cart = useSelector(getCart);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const totalCartPrice = useSelector(getCartTotalPrice);
   const priorityPrice = withPriority ? totalCartPrice * 0.2 : 0;
   const totalPrice = totalCartPrice + priorityPrice;
@@ -32,7 +33,7 @@ function CreateOrder() {
       </h2>
       <button
         onClick={() => {
-          dispatch<any>(fetchAddress());
+          dispatch(fetchAddress());
         }}
       >
         Update Address
