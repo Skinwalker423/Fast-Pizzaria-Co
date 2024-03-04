@@ -13,7 +13,14 @@ const useUser = () => {
     return dispatch(updateName(name));
   };
 
-  return { username, dispatchUpdateName, address, status, position };
+  return {
+    username,
+    dispatchUpdateName,
+    address,
+    status,
+    position,
+    error: user?.error,
+  };
 };
 
 export default useUser;

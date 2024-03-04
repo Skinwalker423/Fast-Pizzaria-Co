@@ -18,7 +18,7 @@ function CreateOrder() {
   const totalCartPrice = useSelector(getCartTotalPrice);
   const priorityPrice = withPriority ? totalCartPrice * 0.2 : 0;
   const totalPrice = totalCartPrice + priorityPrice;
-  const { username, address, status, position } = useUser();
+  const { username, address, status, position, error } = useUser();
   const navigation = useNavigation();
   const formErrors = useActionData() as any;
 
@@ -73,6 +73,11 @@ function CreateOrder() {
               required
               defaultValue={address}
             />
+            {status === "error" && (
+              <p className=" mt-2 w-fit rounded-full bg-red-100 px-4 py-2 text-xs text-red-700">
+                {error}
+              </p>
+            )}
             <Button
               disabled={
                 isLoadingAddress || !!position.latitude || !!position.longitude
