@@ -18,11 +18,13 @@ function CreateOrder() {
   const totalCartPrice = useSelector(getCartTotalPrice);
   const priorityPrice = withPriority ? totalCartPrice * 0.2 : 0;
   const totalPrice = totalCartPrice + priorityPrice;
-  const { username, address } = useUser();
+  const { username, address, status, position } = useUser();
   const navigation = useNavigation();
   const formErrors = useActionData() as any;
-  console.log("address", address);
+
   const isSubmitting = navigation.state === "submitting";
+
+  const isLoadingAddress = status === "loading";
 
   if (!cart.length) return <EmptyCart />;
 
@@ -63,8 +65,18 @@ function CreateOrder() {
         <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
           <label className="sm:basis-40">Address</label>
           <div className="relative grow">
-            <input className="form-input" type="text" name="address" required />
+            <input
+              disabled={isLoadingAddress}
+              className="form-input"
+              type="text"
+              name="address"
+              required
+              defaultValue={address}
+            />
             <Button
+              disabled={
+                isLoadingAddress || !!position.latitude || !!position.longitude
+              }
               className="absolute right-0 top-0 z-10 rounded-l-none"
               size="medium"
               onClick={(e) => {
@@ -72,7 +84,7 @@ function CreateOrder() {
                 dispatch(fetchAddress());
               }}
             >
-              Retrieve Address
+              {isLoadingAddress ? "Loading..." : "Retrieve Address"}
             </Button>
           </div>
         </div>
