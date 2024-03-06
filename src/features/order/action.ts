@@ -13,7 +13,7 @@ export async function action({ request }) {
   const formData = await request.formData();
   const data = Object.fromEntries(formData) as {
     id: string;
-    status: "preparing order" | "delivered order" | "en route";
+    status: "preparing" | "delivered" | "en route";
     priority: string;
     priorityPrice: number;
     orderPrice: number;

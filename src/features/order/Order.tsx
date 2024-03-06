@@ -99,9 +99,7 @@ function Order() {
           To pay on delivery: {formatCurrency(orderPrice + priorityPrice)}
         </p>
       </div>
-      {!priority && status === "preparing order" && (
-        <UpdateOrder order={order} />
-      )}
+      {!priority && status === "preparing" && <UpdateOrder order={order} />}
     </div>
   );
 }
