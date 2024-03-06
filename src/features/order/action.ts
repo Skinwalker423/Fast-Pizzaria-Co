@@ -13,7 +13,7 @@ export async function action({ request }) {
   const formData = await request.formData();
   const data = Object.fromEntries(formData) as {
     id: string;
-    status: string;
+    status: "preparing order" | "delivered order" | "en route";
     priority: string;
     priorityPrice: number;
     orderPrice: number;
@@ -29,8 +29,6 @@ export async function action({ request }) {
     cart: JSON.parse(data["cart"]),
     priority: data["priority"] === "on",
   };
-
-  console.log("order", order);
 
   const errors = {} as any;
   console.log("order", order);
