@@ -13,6 +13,7 @@ import {
 import { MenuData, OrderItem as OrderItemProps } from "../../types";
 import OrderItem from "./OrderItem";
 import { useEffect } from "react";
+import UpdateOrder from "./UpdateOrder";
 
 function Order() {
   const order = useLoaderData() as OrderItemProps;
@@ -98,6 +99,9 @@ function Order() {
           To pay on delivery: {formatCurrency(orderPrice + priorityPrice)}
         </p>
       </div>
+      {!priority && status === "preparing order" && (
+        <UpdateOrder order={order} />
+      )}
     </div>
   );
 }

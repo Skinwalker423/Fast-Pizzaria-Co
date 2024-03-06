@@ -10,7 +10,7 @@ export type CartItemProps = {
 
 export type OrderItem = {
   id: string;
-  status: string;
+  status: "preparing order" | "delivered order" | "en route";
   priority: boolean;
   priorityPrice: number;
   orderPrice: number;
@@ -31,7 +31,7 @@ export type ConfirmedOrder = {
   phone: string;
   priority: true;
   priorityPrice: number;
-  status: string;
+  status: "preparing order" | "delivered order" | "en route";
 };
 
 export type UpdateOrder = {
